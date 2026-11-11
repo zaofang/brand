@@ -1,0 +1,98 @@
+/* Zaofang Lamplight tokens. Dark first: dark on :root, light under prefers-color-scheme and [data-theme="light"]. */
+:root {
+  --zf-bg: #13242A;
+  --zf-surface: #1D333B;
+  --zf-surface-2: #2B4148;
+  --zf-border: #3B5159;
+  --zf-text: #F0E7D5;
+  --zf-text-muted: #94A9B0;
+  --zf-accent: #F0A445;
+  --zf-on-accent: #13242A;
+  --zf-accent-text: #F0A445;
+  --zf-selection: #234951;
+  --zf-link: #7DC4D5;
+  --zf-info: #7DC4D5;
+  --zf-success: #90D192;
+  --zf-warning: #F0A445;
+  --zf-error: #F9875E;
+  --zf-chart: #7DB0E1;
+  --zf-code-comment: #7F97A0;
+  --zf-code-keyword: #7DC4D5;
+  --zf-code-function: #7DB0E1;
+  --zf-code-type: #CBA1C6;
+  --zf-code-string: #90D192;
+  --zf-code-number: #C3AA48;
+  --zf-code-variable: #F0E7D5;
+  --zf-code-punctuation: #94A9B0;
+  --zf-code-invalid: #F9875E;
+  --zf-font-display: 'Newsreader', 'Noto Serif SC', Georgia, serif;
+  --zf-font-text: 'Geist', 'Noto Sans SC', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --zf-font-mono: 'DM Mono', 'Noto Sans Mono CJK SC', ui-monospace, Menlo, Consolas, monospace;
+  --zf-size-xs: 0.8rem;
+  --zf-size-sm: 0.875rem;
+  --zf-size-base: 1rem;
+  --zf-size-lg: 1.25rem;
+  --zf-size-xl: 1.563rem;
+  --zf-size-2xl: 1.953rem;
+  --zf-size-3xl: 2.441rem;
+  --zf-size-4xl: 3.052rem;
+  color-scheme: dark;
+}
+@media (prefers-color-scheme: light) {
+  :root:not([data-theme="dark"]) {
+    --zf-bg: #F2EBDC;
+    --zf-surface: #E6DCCA;
+    --zf-surface-2: #DAD0BF;
+    --zf-border: #C8BCA9;
+    --zf-text: #15232A;
+    --zf-text-muted: #4F6168;
+    --zf-accent: #F0A445;
+    --zf-on-accent: #15232A;
+    --zf-accent-text: #965808;
+    --zf-selection: #E7D5B7;
+    --zf-link: #006A7D;
+    --zf-info: #006A7D;
+    --zf-success: #38733C;
+    --zf-warning: #965808;
+    --zf-error: #9F4325;
+    --zf-chart: #345F95;
+    --zf-code-comment: #566970;
+    --zf-code-keyword: #006A7D;
+    --zf-code-function: #345F95;
+    --zf-code-type: #7A4475;
+    --zf-code-string: #38733C;
+    --zf-code-number: #756208;
+    --zf-code-variable: #15232A;
+    --zf-code-punctuation: #4F6168;
+    --zf-code-invalid: #9F4325;
+    color-scheme: light;
+  }
+}
+:root[data-theme="light"] {
+  --zf-bg: #F2EBDC;
+  --zf-surface: #E6DCCA;
+  --zf-surface-2: #DAD0BF;
+  --zf-border: #C8BCA9;
+  --zf-text: #15232A;
+  --zf-text-muted: #4F6168;
+  --zf-accent: #F0A445;
+  --zf-on-accent: #15232A;
+  --zf-accent-text: #965808;
+  --zf-selection: #E7D5B7;
+  --zf-link: #006A7D;
+  --zf-info: #006A7D;
+  --zf-success: #38733C;
+  --zf-warning: #965808;
+  --zf-error: #9F4325;
+  --zf-chart: #345F95;
+  --zf-code-comment: #566970;
+  --zf-code-keyword: #006A7D;
+  --zf-code-function: #345F95;
+  --zf-code-type: #7A4475;
+  --zf-code-string: #38733C;
+  --zf-code-number: #756208;
+  --zf-code-variable: #15232A;
+  --zf-code-punctuation: #4F6168;
+  --zf-code-invalid: #9F4325;
+  color-scheme: light;
+}

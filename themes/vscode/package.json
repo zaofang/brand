@@ -1,0 +1,27 @@
+{
+  "name": "zaofang-lamplight",
+  "displayName": "Zaofang Lamplight",
+  "description": "Zaofang's Lamplight colours: teal-black, warm paper, one amber cursor.",
+  "version": "1.0.0",
+  "publisher": "zaofang",
+  "engines": {
+    "vscode": "^1.80.0"
+  },
+  "categories": [
+    "Themes"
+  ],
+  "contributes": {
+    "themes": [
+      {
+        "label": "Zaofang Lamplight Dark",
+        "uiTheme": "vs-dark",
+        "path": "./themes/zaofang-lamplight-dark-color-theme.json"
+      },
+      {
+        "label": "Zaofang Lamplight Light",
+        "uiTheme": "vs",
+        "path": "./themes/zaofang-lamplight-light-color-theme.json"
+      }
+    ]
+  }
+}

@@ -1,0 +1,13 @@
+[colors]
+background = "#F2EBDC"
+foreground = "#15232A"
+cursor_bg = "#B97515"
+cursor_fg = "#F2EBDC"
+cursor_border = "#B97515"
+selection_bg = "#E7D5B7"
+selection_fg = "#15232A"
+ansi = ["#15232A", "#9F4325", "#38733C", "#965808", "#345F95", "#7A4475", "#006A7D", "#DAD0BF"]
+brights = ["#50707A", "#9F4325", "#38733C", "#965808", "#345F95", "#7A4475", "#006A7D", "#E6DCCA"]
+
+[metadata]
+name = "Zaofang Lamplight Light"

@@ -1,0 +1,50 @@
+{
+  "schemes": [
+    {
+      "name": "Zaofang Lamplight Dark",
+      "background": "#13242A",
+      "foreground": "#F0E7D5",
+      "cursorColor": "#F0A445",
+      "selectionBackground": "#234951",
+      "black": "#1D333B",
+      "red": "#F9875E",
+      "green": "#90D192",
+      "yellow": "#F0A445",
+      "blue": "#7DB0E1",
+      "purple": "#CBA1C6",
+      "cyan": "#7DC4D5",
+      "white": "#C9C1B0",
+      "brightBlack": "#50707A",
+      "brightRed": "#FFA481",
+      "brightGreen": "#AEE5AF",
+      "brightYellow": "#FFBE73",
+      "brightBlue": "#9AC6F0",
+      "brightPurple": "#E0C2DC",
+      "brightCyan": "#9DD9E8",
+      "brightWhite": "#F0E7D5"
+    },
+    {
+      "name": "Zaofang Lamplight Light",
+      "background": "#F2EBDC",
+      "foreground": "#15232A",
+      "cursorColor": "#B97515",
+      "selectionBackground": "#E7D5B7",
+      "black": "#15232A",
+      "red": "#9F4325",
+      "green": "#38733C",
+      "yellow": "#965808",
+      "blue": "#345F95",
+      "purple": "#7A4475",
+      "cyan": "#006A7D",
+      "white": "#DAD0BF",
+      "brightBlack": "#50707A",
+      "brightRed": "#9F4325",
+      "brightGreen": "#38733C",
+      "brightYellow": "#965808",
+      "brightBlue": "#345F95",
+      "brightPurple": "#7A4475",
+      "brightCyan": "#006A7D",
+      "brightWhite": "#E6DCCA"
+    }
+  ]
+}

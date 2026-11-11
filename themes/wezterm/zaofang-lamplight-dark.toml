@@ -1,0 +1,13 @@
+[colors]
+background = "#13242A"
+foreground = "#F0E7D5"
+cursor_bg = "#F0A445"
+cursor_fg = "#13242A"
+cursor_border = "#F0A445"
+selection_bg = "#234951"
+selection_fg = "#F0E7D5"
+ansi = ["#1D333B", "#F9875E", "#90D192", "#F0A445", "#7DB0E1", "#CBA1C6", "#7DC4D5", "#C9C1B0"]
+brights = ["#50707A", "#FFA481", "#AEE5AF", "#FFBE73", "#9AC6F0", "#E0C2DC", "#9DD9E8", "#F0E7D5"]
+
+[metadata]
+name = "Zaofang Lamplight Dark"
