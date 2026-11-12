@@ -17,6 +17,7 @@ Source files for Zaofang's identity: logos, colour tokens, terminal and editor t
 | `motion/` | `typeon.svg` (type-on with blinking cursor), `splash.sh` (CLI splash) |
 | `tokens/` | `tokens.css` (custom properties, dark first) and `tokens.json` (Design Tokens format) |
 | `themes/` | Ghostty, Alacritty, Kitty, WezTerm, Windows Terminal, VS Code (also loads in Shiki) and Neovim |
+| `book/` | `zaofang-brand-book.pdf` and `zaofang-brand-book-zh.pdf`, the brand book in English and Chinese: name, voice, logo, colour, type, motion, motifs, sub-projects, applications |
 | `fonts/` | Which typefaces, where to get them, their licence |
 | `src/` | The drawing code: Bevel 造坊, the zaofang letters, spacing, cursor, palette, writers |
 
@@ -38,6 +39,7 @@ Source files for Zaofang's identity: logos, colour tokens, terminal and editor t
 uv run zaofang-brand                              # SVGs, tokens, themes
 uv run --extra png playwright install chromium    # once
 uv run --extra png scripts/export_png.py          # PNGs, ICO, social cards
+uv run --extra png scripts/book.py                # brand book PDFs, EN and 中文 (after the two above)
 ```
 
 ## Licence
