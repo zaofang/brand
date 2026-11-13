@@ -15,7 +15,7 @@ Source files for Zaofang's identity: logos, colour tokens, terminal and editor t
 | `logo/png/` | PNG exports: avatar 256/512/1024, favicon 16 to 512, lockups at 1200 px |
 | `social/` | README banners (dark, light), Open Graph card 1200×630, GitHub social preview 1280×640 |
 | `motion/` | `typeon.svg` (type-on with blinking cursor), `splash.sh` (CLI splash) |
-| `tokens/` | `tokens.css` (custom properties, dark first) and `tokens.json` (Design Tokens format) |
+| `tokens/` | `tokens.css` (custom properties and 12-step ramps, dark first) and `tokens.json` (Design Tokens format) |
 | `themes/` | Ghostty, Alacritty, Kitty, WezTerm, Windows Terminal, VS Code (also loads in Shiki) and Neovim |
 | `book/` | `zaofang-brand-book.pdf` and `zaofang-brand-book-zh.pdf`, the brand book in English and Chinese: name, voice, logo, colour, type, motion, motifs, sub-projects, applications |
 | `fonts/` | Which typefaces, where to get them, their licence |
@@ -23,7 +23,7 @@ Source files for Zaofang's identity: logos, colour tokens, terminal and editor t
 
 ## Use
 
-- **Web:** `@import "tokens/tokens.css";` then `var(--zf-bg)`, `var(--zf-text)`, `var(--zf-accent)` and so on. Set `data-theme="light"` or `"dark"` on `<html>` to override the system setting.
+- **Web:** `@import "tokens/tokens.css";` then `var(--zf-bg)`, `var(--zf-text)`, `var(--zf-accent)` and so on. Each hue (`neutral`, `amber`, `ember`, `tide`, `sage`, `dusk`, `heather`, `straw`) has a 12-step ramp per mode, `var(--zf-tide-1)` to `var(--zf-tide-12)`: 1-2 page and subtle fills, 3-5 component fills, 6-8 borders, 9-10 solid fill and its hover, 11 text, 12 strong text. Amber steps keep amber's four jobs. Set `data-theme="light"` or `"dark"` on `<html>` to override the system setting.
 - **Favicon:** `<link rel="icon" href="/favicon.svg" type="image/svg+xml">` with `favicon.ico` as fallback and `favicon-180.png` as `apple-touch-icon`.
 - **Ghostty:** copy `themes/ghostty/zaofang-lamplight-dark` to `~/.config/ghostty/themes/`, then `theme = zaofang-lamplight-dark`.
 - **Alacritty:** `import = ["~/.config/alacritty/zaofang-lamplight-dark.toml"]` under `[general]`.
