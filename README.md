@@ -17,6 +17,7 @@ Source files for Zaofang's identity: logos, colour tokens, terminal and editor t
 | `motion/` | `typeon.svg` (type-on with blinking cursor), `splash.sh` (CLI splash) |
 | `tokens/` | `tokens.css` (custom properties, dark first) and `tokens.json` (Design Tokens format) |
 | `themes/` | Ghostty, Alacritty, Kitty, WezTerm, Windows Terminal, VS Code (also loads in Shiki) and Neovim |
+| `print/` | Stickers (cursor, 坊 block, 造坊 contour cut, maker's stamp, A6 kiss-cut sheet) and the calling card: CMYK PDFs with bleed, TrimBox and a `CutContour` die line, plus SVG previews |
 | `book/` | `zaofang-brand-book.pdf` and `zaofang-brand-book-zh.pdf`, the brand book in English and Chinese: name, voice, logo, colour, type, motion, motifs, sub-projects, applications |
 | `fonts/` | Which typefaces, where to get them, their licence |
 | `src/` | The drawing code: Bevel 造坊, the zaofang letters, spacing, cursor, palette, writers |
@@ -40,7 +41,12 @@ uv run zaofang-brand                              # SVGs, tokens, themes
 uv run --extra png playwright install chromium    # once
 uv run --extra png scripts/export_png.py          # PNGs, ICO, social cards
 uv run --extra png scripts/book.py                # brand book PDFs, EN and 中文 (after the two above)
+uv run --extra print scripts/press.py             # stickers and print (fetches DM Mono and Noto Sans SC once)
 ```
+
+## Print
+
+Send the PDFs in `print/` as they are. Each is PDF 1.4 with DeviceCMYK fills only, a TrimBox and a BleedBox (3 mm on the card, 2 mm past the die on stickers), text outlined, and the die drawn as the `CutContour` spot colour at 0.25 pt, set to overprint. The CMYK values in `PRINT` (`src/zaofang_brand/palette.py`) are set by hand for coated stock, not converted through an ICC profile: order a proof and check amber and the ground before a run.
 
 ## Licence
 

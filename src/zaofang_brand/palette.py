@@ -44,6 +44,16 @@ TERMINAL = {
     "dark": dict(bg="#13242A", fg="#F0E7D5", cursor="#F0A445", cursor_text="#13242A", sel_bg="#234951", sel_fg="#F0E7D5"),
     "light": dict(bg="#F2EBDC", fg="#15232A", cursor="#B97515", cursor_text="#F2EBDC", sel_bg="#E7D5B7", sel_fg="#15232A"),
 }
+# Print: role -> (sRGB for previews, CMYK percentages for press). Set by hand for coated stock, total ink 250 or less.
+# Not ICC conversions: proof amber and ground before a run. Ground also prints the ink on paper; paper also prints text on ground.
+PRINT = {
+    "ground": ("#13242A", (80, 45, 40, 85)),
+    "paper": ("#F2EBDC", (3, 4, 12, 0)),
+    "amber": ("#F0A445", (0, 40, 78, 0)),
+    "muted": ("#4F6168", (65, 40, 38, 30)),       # secondary text on paper
+    "muted-dark": ("#94A9B0", (42, 20, 22, 4)),   # secondary text on ground
+    "die": ("#7DC4D5", (0, 100, 0, 0)),           # previews only; the PDF writes the die as the CutContour spot
+}
 ANSI_NAMES = ["black", "red", "green", "yellow", "blue", "magenta", "cyan", "white"]
 
 FONTS = {
