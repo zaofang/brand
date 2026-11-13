@@ -68,3 +68,69 @@ def luminance(h: str) -> float:
 def contrast(a: str, b: str) -> float:
     la, lb = sorted((luminance(a), luminance(b)), reverse=True)
     return (la + .05) / (lb + .05)
+
+
+# Ramps --------------------------------------------------------------------------------------------------
+# Twelve steps per hue and mode, one job each: 1-2 page and subtle fills, 3-5 component fills (rest, hover,
+# pressed), 6-8 borders, 9 solid fill, 10 solid hover, 11 text, 12 strong text. Steps 1-8 tint the mode's own
+# ground toward the hue, so dark fills keep the teal night and light fills keep the paper. 9 is the bright value
+# in both modes, as the cursor is; 11 is the value UI already ships. Amber steps keep amber's four jobs.
+RAMP_HUES = {"amber": UI["warning"], "ember": UI["error"], "tide": UI["link"], "sage": UI["success"],
+             "dusk": UI["chart"], "heather": SYNTAX["type"], "straw": SYNTAX["number"]}
+_TINT = {"dark": [.04, .08, .13, .19, .26, .34, .44, .56], "light": [.02, .04, .07, .11, .16, .22, .3, .42]}
+
+
+def _gam(c: float) -> float:
+    return 12.92 * c if c <= .0031308 else 1.055 * c ** (1 / 2.4) - .055
+
+
+def oklab(h: str) -> tuple[float, float, float]:
+    r, g, b = (_lin(int(h[i:i + 2], 16) / 255) for i in (1, 3, 5))
+    l, m, s = ((.4122214708 * r + .5363325363 * g + .0514459929 * b) ** (1 / 3),
+               (.2119034982 * r + .6806995451 * g + .1073969566 * b) ** (1 / 3),
+               (.0883024619 * r + .2817188376 * g + .6299787005 * b) ** (1 / 3))
+    return (.2104542553 * l + .7936177850 * m - .0040720468 * s, 1.9779984951 * l - 2.4285922050 * m + .4505937099 * s,
+            .0259040371 * l + .7827717662 * m - .8086757660 * s)
+
+
+def _srgb(L: float, a: float, b: float) -> tuple[float, float, float]:
+    l, m, s = ((L + .3963377774 * a + .2158037573 * b) ** 3, (L - .1055613458 * a - .0638541728 * b) ** 3,
+               (L - .0894841775 * a - 1.2914855480 * b) ** 3)
+    return (4.0767416621 * l - 3.3077115913 * m + .2309699292 * s, -1.2684380046 * l + 2.6097574011 * m - .3413193965 * s,
+            -.0041960863 * l - .7034186147 * m + 1.7076147010 * s)
+
+
+def _hex(rgb: tuple[float, float, float]) -> str:
+    return "#" + "".join(f"{round(_gam(min(1, max(0, c))) * 255):02X}" for c in rgb)
+
+
+def mix(x: str, y: str, t: float) -> str:
+    """OKLab mix, t=0 is x."""
+    return _hex(_srgb(*(p + (q - p) * t for p, q in zip(oklab(x), oklab(y)))))
+
+
+def shift(h: str, dL: float, chroma: float = 1) -> str:
+    """Move lightness by dL and scale chroma, hue held; chroma drops until the colour fits sRGB."""
+    L, a, b = oklab(h)
+    a, b = a * chroma, b * chroma
+    while not all(-1e-4 <= c <= 1 + 1e-4 for c in _srgb(L + dL, a, b)):
+        a, b = a * .98, b * .98
+    return _hex(_srgb(L + dL, a, b))
+
+
+def _ramp(dark: str, light: str, mode: str) -> list[str]:
+    i = 0 if mode == "dark" else 1
+    steps = [mix(UI["bg"][i], (dark, light)[i], t) for t in _TINT[mode]]
+    if mode == "dark":
+        return steps + [dark, shift(dark, .05), dark, shift(dark, .93 - oklab(dark)[0], .4)]
+    return steps + [dark, shift(dark, -.05), light, shift(light, .32 - oklab(light)[0], .7)]
+
+
+def _neutral(i: int) -> list[str]:
+    bg, s1, s2, br, muted, text = (UI[k][i] for k in ("bg", "surface", "surface-2", "border", "text-muted", "text"))
+    return [bg, mix(bg, s1, .5), s1, mix(s1, s2, .5), s2, mix(s2, br, .5), br, mix(br, muted, .35),
+            mix(br, muted, .6), mix(br, muted, .8), muted, text]
+
+
+RAMPS = {mode: {"neutral": _neutral(i), **{k: _ramp(*v, mode) for k, v in RAMP_HUES.items()}}
+         for i, mode in enumerate(("dark", "light"))}

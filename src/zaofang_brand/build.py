@@ -4,7 +4,7 @@ from pathlib import Path
 
 from . import latin, logos
 from .geometry import dnotch, to_d
-from .palette import ANSI, ANSI_NAMES, FONTS, SYNTAX, TERMINAL, TYPE_SCALE, UI
+from .palette import ANSI, ANSI_NAMES, FONTS, RAMPS, SYNTAX, TERMINAL, TYPE_SCALE, UI
 
 ROOT = Path(__file__).resolve().parents[2]
 ON_DARK = dict(ink=UI["text"][0], accent=UI["accent"][0], sel=UI["bg"][0])
@@ -115,6 +115,7 @@ def build_motion() -> None:
 def build_tokens() -> None:
     def block(i: int) -> str:
         rows = [f"  --zf-{k}: {v[i]};" for k, v in UI.items()] + [f"  --zf-code-{k}: {v[i]};" for k, v in SYNTAX.items()]
+        rows += [f"  --zf-{h}-{n}: {c};" for h, r in RAMPS[("dark", "light")[i]].items() for n, c in enumerate(r, 1)]
         return "\n".join(rows)
     fonts = "\n".join(f"  --zf-font-{k}: {v};" for k, v in FONTS.items())
     scale = "\n".join(f"  --zf-size-{k}: {v};" for k, v in TYPE_SCALE.items())
@@ -139,7 +140,8 @@ def build_tokens() -> None:
     write("tokens/tokens.css", css)
     col = lambda v: {"$type": "color", "$value": v}  # noqa: E731
     tokens = {"color": {mode: {**{k: col(v[i]) for k, v in UI.items()}, "code": {k: col(v[i]) for k, v in SYNTAX.items()},
-                               "ansi": {str(n): col(c) for n, c in enumerate(ANSI[mode])}}
+                               "ansi": {str(n): col(c) for n, c in enumerate(ANSI[mode])},
+                               "ramp": {h: {str(n): col(c) for n, c in enumerate(r, 1)} for h, r in RAMPS[mode].items()}}
                         for i, mode in enumerate(("dark", "light"))},
               "font": {k: {"$type": "fontFamily", "$value": [f.strip().strip("'") for f in v.split(",")]} for k, v in FONTS.items()},
               "size": {k: {"$type": "dimension", "$value": v} for k, v in TYPE_SCALE.items()}}
