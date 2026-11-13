@@ -5,7 +5,7 @@ The names zaofang and 造坊, the 造坊 zaofang lockup, the wordmark, and the �
 ## You may
 
 - Use the unmodified logo files to link to Zaofang or a Zaofang project, in articles, talks, package listings and similar.
-- Write "built with yan" or "uses db" with the project's own name, and link to it.
+- Write "built with yan", using the project's own name, and link to it.
 - Use the 坊 avatar and the line "a zaofang project" in a Zaofang sub-project's README, site footer or docs.
 
 ## You may not

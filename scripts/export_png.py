@@ -27,7 +27,7 @@ background-image:radial-gradient(rgba(240,231,213,.09) 1.3px,transparent 1.4px);
 img{{position:absolute;left:{w * .08:.0f}px;top:{h * .30:.0f}px;width:{w * .56:.0f}px}}
 p{{position:absolute;left:{w * .08:.0f}px;bottom:{h * .12:.0f}px;margin:0;font:500 26px 'DM Mono',monospace;color:#94A9B0;letter-spacing:.02em}}
 p b{{color:#F0E7D5;font-weight:500}}</style></head><body><img src="data:image/svg+xml;base64,{lockup}" alt="">
-<p><b>yan</b> · <b>db</b> &nbsp; zaofang.sh</p></body></html>"""
+<p><b>yan</b> &nbsp; zaofang.sh</p></body></html>"""
 
 
 async def main() -> None:
