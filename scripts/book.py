@@ -12,7 +12,7 @@ from playwright.async_api import async_playwright
 from zaofang_brand import latin
 from zaofang_brand.build import BLINK, BLINKS, TYPE_TIMES
 from zaofang_brand.geometry import dnotch, to_d
-from zaofang_brand.palette import ANSI, ANSI_NAMES, SYNTAX, TYPE_SCALE, UI, contrast
+from zaofang_brand.palette import ANSI, ANSI_NAMES, RAMPS, SYNTAX, TYPE_SCALE, UI, contrast
 
 ROOT = Path(__file__).resolve().parents[1]
 VERSION = tomllib.loads((ROOT / "pyproject.toml").read_text())["project"]["version"]
@@ -318,6 +318,32 @@ def build(lang: str) -> str:
               "错误用余烬，警告用琥珀，成功用鼠尾草绿，信息用潮色，次要文字用亮黑。遵守 NO_COLOR。琥珀不进入代码文字，只标记光标、搜索命中和匹配括号。") + '</div>'
           f'<div class="s">{t("FILES", "文件")}</div><div class="i" style="color:#7DC4D5">themes/ghostty  themes/alacritty  themes/kitty  themes/wezterm<br>'
           'themes/windows-terminal  themes/vscode  themes/nvim</div>')
+
+    zh_hue = {"neutral": "中性", "amber": "琥珀", "ember": "余烬", "tide": "潮色", "sage": "鼠尾草绿", "dusk": "暮色",
+              "heather": "石楠", "straw": "麦秆"}
+
+    def ramp_grid(mode: str) -> str:
+        rows = "".join(f'<div class="m" style="font-size:10.5px;align-self:center">{t(h, zh_hue[h])}</div>'
+                       + "".join(f'<div style="height:24px;background:{c}"></div>' for c in r) for h, r in RAMPS[mode].items())
+        nums = "<div></div>" + "".join(f'<div class="m" style="font-size:10px">{n}</div>' for n in range(1, 13))
+        return (f'<div style="margin:6px 0 0 48px;display:grid;grid-template-columns:64px repeat(12,1fr);gap:2px">'
+                f'{nums}{rows}</div>')
+    jobs = [("1-2", t("page and subtle fills", "页面与浅底")), ("3-5", t("component fills: rest, hover, pressed", "组件底色：常态、悬停、按下")),
+            ("6-8", t("borders", "边框")), ("9-10", t("solid fill and its hover", "实色填充及其悬停")), ("11", t("text", "文字")),
+            ("12", t("strong text", "强调文字"))]
+    b.man(chapters[3], f'<div class="s" style="margin-top:0">{t("RAMPS", "色阶")}</div><div class="i">' + t(
+              "Twelve steps per hue and per mode, one job each. Steps 1 to 8 tint the mode's own ground toward the hue, so dark "
+              "fills stay teal and light fills stay warm. Step 11 is the role colour above; step 9 is the bright value in both modes.",
+              "每个色相、每种模式各十二级，每级一个用途。第 1 到 8 级由该模式的底色向色相过渡，所以深色填充保持青色，浅色填充保持暖色。"
+              "第 11 级即上文的角色色；第 9 级在两种模式下都是亮色值。") + '</div>'
+          '<table class="i" style="margin:8px 0 0 48px">' + "".join(f'<tr><td class="m">{n}</td><td>{j}</td></tr>' for n, j in jobs) + '</table>'
+          f'<div class="s">{t("DARK", "深色")}</div>{ramp_grid("dark")}'
+          f'<div class="s">{t("LIGHT", "浅色")}</div>{ramp_grid("light")}'
+          f'<div class="s">{t("RULES", "规则")}</div><div class="i">' + t(
+              "Text sits on steps 1 to 3 at step 11 or 12. Amber steps keep amber's four jobs; ember steps are for errors only. "
+              "tokens/tokens.css as --zf-tide-1 to --zf-tide-12, and so on for each hue.",
+              "文字用第 11 或 12 级，放在第 1 到 3 级上。琥珀各级仍只做琥珀的四件事；余烬各级只用于错误。"
+              "tokens/tokens.css 中为 --zf-tide-1 到 --zf-tide-12，其他色相同理。") + '</div>')
 
     # 05 Type
     b.chapter()
